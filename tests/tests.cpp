@@ -29,3 +29,15 @@ TEST_CASE("Compare athletes by height")
     REQUIRE(FindMax(vAth, maxHeightAth, hComp));
     REQUIRE(maxHeightAth.height == 200);
 }
+
+TEST_CASE("Compare athletes by weight")
+{
+    Athlete a1{"john", 180, 3000};
+    Athlete a2{"alex", 200, 100};
+    Athlete a3{"a3", 1, 1000};
+    std::vector<Athlete> vAth{a1, a2, a3};
+    Athlete maxWeithAth;
+    AthleteWeightComparator wComp;
+    REQUIRE(FindMax(vAth, maxWeithAth, wComp));
+    REQUIRE(maxWeithAth.weight == 3000);
+}

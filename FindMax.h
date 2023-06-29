@@ -39,6 +39,17 @@ public:
     }
 };
 
+struct Student
+{
+    std::string name;
+    std::string surname;
+    Student& operator=(const Student& s)
+    {
+        name = s.name;
+        surname = s.surname;
+    }
+};
+
 template<typename T, typename Less>
 bool FindMax(std::vector<T> const& arr, T& maxValue, Less const& less)
 {
@@ -46,7 +57,16 @@ bool FindMax(std::vector<T> const& arr, T& maxValue, Less const& less)
     {
         return false;
     }
-    auto max = std::max_element(arr.begin(), arr.end(), less);
+
+    auto max = arr.begin();
+
+    for (auto it = arr.begin(); it != arr.end(); ++it)
+    {
+        if (less(*max, *it))
+        {
+            max = it;
+        }
+    }
     maxValue = *max;
     return true;
 }
